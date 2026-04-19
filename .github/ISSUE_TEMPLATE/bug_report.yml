@@ -1,0 +1,50 @@
+name: Bug Report
+description: Report incorrect validation results, wrong error messages, or unexpected behaviour.
+labels: ["type: bug", "status: needs-triage"]
+body:
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP Version
+      placeholder: "8.3.x"
+    validations:
+      required: true
+
+  - type: input
+    id: laravel-version
+    attributes:
+      label: Laravel Version
+      placeholder: "11.x"
+    validations:
+      required: true
+
+  - type: input
+    id: package-version
+    attributes:
+      label: numerik-laravel Version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Include the input value, which rule was used, and the unexpected result.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      render: php
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
