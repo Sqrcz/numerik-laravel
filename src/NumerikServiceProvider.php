@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use SlashLab\Numerik\Identifiers\KrsIdentifier;
 use SlashLab\Numerik\Identifiers\NipIdentifier;
+use SlashLab\Numerik\Identifiers\RegonIdentifier;
 
 final class NumerikServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,13 @@ final class NumerikServiceProvider extends ServiceProvider
             Validator::extend('nip', static function (string $attr, mixed $value) use ($strict): bool {
                 $string = is_scalar($value) ? (string) $value : '';
                 return (new NipIdentifier(strict: $strict))->isValid($string);
+            });
+        }
+
+        if ((bool) config('numerik.rules.regon', true)) {
+            Validator::extend('regon', static function (string $attr, mixed $value) use ($strict): bool {
+                $string = is_scalar($value) ? (string) $value : '';
+                return (new RegonIdentifier(strict: $strict))->isValid($string);
             });
         }
 
