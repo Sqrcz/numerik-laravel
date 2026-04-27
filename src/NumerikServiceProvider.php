@@ -16,6 +16,8 @@ final class NumerikServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/numerik.php', 'numerik');
+
+        $this->app->bind(\SlashLab\Numerik\Numerik::class, \SlashLab\Numerik\Numerik::class);
     }
 
     public function boot(): void
