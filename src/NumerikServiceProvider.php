@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use SlashLab\Numerik\Identifiers\KrsIdentifier;
 use SlashLab\Numerik\Identifiers\NipIdentifier;
+use SlashLab\Numerik\Identifiers\PeselIdentifier;
 use SlashLab\Numerik\Identifiers\RegonIdentifier;
 
 final class NumerikServiceProvider extends ServiceProvider
@@ -20,6 +21,13 @@ final class NumerikServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $strict = (bool) config('numerik.strict', true);
+
+        if ((bool) config('numerik.rules.pesel', true)) {
+            Validator::extend('pesel', static function (string $attr, mixed $value) use ($strict): bool {
+                $string = is_scalar($value) ? (string) $value : '';
+                return (new PeselIdentifier(strict: $strict))->isValid($string);
+            });
+        }
 
         if ((bool) config('numerik.rules.nip', true)) {
             Validator::extend('nip', static function (string $attr, mixed $value) use ($strict): bool {
