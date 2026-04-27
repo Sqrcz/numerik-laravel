@@ -17,7 +17,8 @@ final class PeselRule implements ValidationRule
         private readonly ?Gender $gender = null,
         private readonly ?DateTimeImmutable $bornBefore = null,
         private readonly ?DateTimeImmutable $bornAfter = null,
-    ) {}
+    ) {
+    }
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
