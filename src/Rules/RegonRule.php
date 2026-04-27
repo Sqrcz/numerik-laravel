@@ -12,7 +12,8 @@ final class RegonRule implements ValidationRule
 {
     public function __construct(
         private readonly bool $strict = true,
-    ) {}
+    ) {
+    }
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
