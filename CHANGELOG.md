@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - unreleased
+
+### Added
+
+- Per-reason validation messages for `NipRule`, `KrsRule`, and `PeselRule`. Each failure reason (invalid checksum, invalid length, invalid format, etc.) now returns a specific message instead of a generic one. `RegonRule` is unchanged — granular messages for REGON are deferred.
+
+### Changed
+
+- Translation keys for `nip`, `krs`, and `pesel` are now nested arrays. Each key has a `default` entry (used as a fallback for unknown reasons) plus one entry per `ValidationFailureReason`. The `regon` key and all `pesel_gender` / `pesel_born_before` / `pesel_born_after` keys are unchanged.
+
+> **Upgrading from 1.0.0:** only affects you if you ran `vendor:publish --tag=numerik-lang`. If you did, convert the `nip`, `krs`, and `pesel` keys in your published file from flat strings to nested arrays matching the structure in [`resources/lang/en/validation.php`](resources/lang/en/validation.php).
+
 ## [1.0.0] - 2026-04-27
 
 ### Added

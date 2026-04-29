@@ -25,8 +25,15 @@ final class PeselRule implements ValidationRule
         $identifier = new PeselIdentifier(strict: $this->strict);
         $string = is_scalar($value) ? (string) $value : '';
 
-        if (! $identifier->isValid($string)) {
-            $fail('numerik::validation.pesel')->translate(['attribute' => $attribute]);
+        $result = $identifier->validate($string);
+
+        if ($result->isFailed()) {
+            $reason = $result->getFirstFailure()?->reason->value ?? 'default';
+            $key = "numerik::validation.pesel.{$reason}";
+
+            $fail(app('translator')->has($key) ? $key : 'numerik::validation.pesel.default')
+                ->translate(['attribute' => $attribute]);
+
             return;
         }
 

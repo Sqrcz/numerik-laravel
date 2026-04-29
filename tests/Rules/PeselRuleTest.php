@@ -64,6 +64,55 @@ final class PeselRuleTest extends TestCase
         $this->assertTrue($validator->passes());
     }
 
+    public function test_invalid_length_message(): void
+    {
+        $validator = Validator::make(['field' => '123'], ['field' => new PeselRule()]);
+
+        $this->assertSame('PESEL must be exactly 11 digits.', $validator->errors()->first('field'));
+    }
+
+    public function test_invalid_characters_message(): void
+    {
+        $validator = Validator::make(['field' => 'abc12345678'], ['field' => new PeselRule()]);
+
+        $this->assertSame('The field may only contain digits.', $validator->errors()->first('field'));
+    }
+
+    public function test_invalid_month_message(): void
+    {
+        $validator = Validator::make(['field' => '00001500010'], ['field' => new PeselRule()]);
+
+        $this->assertSame('The field contains an invalid month encoding.', $validator->errors()->first('field'));
+    }
+
+    public function test_invalid_date_message(): void
+    {
+        $validator = Validator::make(['field' => '00013200000'], ['field' => new PeselRule()]);
+
+        $this->assertSame('The field contains an invalid date.', $validator->errors()->first('field'));
+    }
+
+    public function test_invalid_checksum_message(): void
+    {
+        $validator = Validator::make(['field' => '44051401459'], ['field' => new PeselRule()]);
+
+        $this->assertSame('The field checksum digit is incorrect.', $validator->errors()->first('field'));
+    }
+
+    public function test_future_date_message(): void
+    {
+        $validator = Validator::make(['field' => '30210100018'], ['field' => new PeselRule(strict: true)]);
+
+        $this->assertSame('The field must belong to a person born in the past.', $validator->errors()->first('field'));
+    }
+
+    public function test_all_same_digit_message(): void
+    {
+        $validator = Validator::make(['field' => '22222222222'], ['field' => new PeselRule(strict: true)]);
+
+        $this->assertSame('The field cannot consist of a single repeated digit.', $validator->errors()->first('field'));
+    }
+
     public function test_gender_match_passes(): void
     {
         $validator = Validator::make(
@@ -179,16 +228,9 @@ final class PeselRuleTest extends TestCase
 
         $this->assertFalse($validator->passes());
         $this->assertSame(
-            'The pesel is not a valid PESEL number.',
+            'The pesel checksum digit is incorrect.',
             $validator->errors()->first('pesel'),
         );
-    }
-
-    public function test_fail_message_uses_translation(): void
-    {
-        $validator = Validator::make(['field' => '44051401459'], ['field' => new PeselRule()]);
-
-        $this->assertSame('The field is not a valid PESEL number.', $validator->errors()->first('field'));
     }
 
     public function test_string_alias_passes_for_valid_pesel(): void

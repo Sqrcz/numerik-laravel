@@ -20,8 +20,14 @@ final class NipRule implements ValidationRule
         $identifier = new NipIdentifier(strict: $this->strict);
         $string = is_scalar($value) ? (string) $value : '';
 
-        if (! $identifier->isValid($string)) {
-            $fail('numerik::validation.nip')->translate(['attribute' => $attribute]);
+        $result = $identifier->validate($string);
+
+        if ($result->isFailed()) {
+            $reason = $result->getFirstFailure()?->reason->value ?? 'default';
+            $key = "numerik::validation.nip.{$reason}";
+
+            $fail(app('translator')->has($key) ? $key : 'numerik::validation.nip.default')
+                ->translate(['attribute' => $attribute]);
         }
     }
 }
