@@ -1,8 +1,21 @@
+# Dependencies
 /vendor/
-/.phpunit.cache/
-/.php-cs-fixer.cache
-/coverage/
+/composer.lock
+
+# Testing
 /.phpunit.result.cache
-composer.lock
-.env
+/coverage/
+
+# Code style
+/.php-cs-fixer.cache
+
+# IDE
+.idea/
+.vscode/
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Internal
+/.scratch/
