@@ -45,11 +45,32 @@ final class KrsRuleTest extends TestCase
         $this->assertTrue($validator->passes());
     }
 
-    public function test_fail_message_uses_translation(): void
+    public function test_invalid_length_message(): void
+    {
+        $validator = Validator::make(['field' => '12345678901'], ['field' => new KrsRule()]);
+
+        $this->assertSame('KRS must be between 1 and 10 digits.', $validator->errors()->first('field'));
+    }
+
+    public function test_invalid_characters_message(): void
+    {
+        $validator = Validator::make(['field' => 'abc'], ['field' => new KrsRule()]);
+
+        $this->assertSame('The field may only contain digits.', $validator->errors()->first('field'));
+    }
+
+    public function test_all_zeros_message(): void
     {
         $validator = Validator::make(['field' => '0000000000'], ['field' => new KrsRule()]);
 
-        $this->assertSame('The field is not a valid KRS number.', $validator->errors()->first('field'));
+        $this->assertSame('The field cannot be all zeros.', $validator->errors()->first('field'));
+    }
+
+    public function test_all_same_digit_message(): void
+    {
+        $validator = Validator::make(['field' => '1111111111'], ['field' => new KrsRule(strict: true)]);
+
+        $this->assertSame('The field cannot consist of a single repeated digit.', $validator->errors()->first('field'));
     }
 
     public function test_string_alias_passes_for_valid_krs(): void
