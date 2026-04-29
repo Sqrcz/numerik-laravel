@@ -51,6 +51,16 @@ All rules accept an optional `strict` parameter (default `true`). In strict mode
 new PeselRule(strict: false)
 ```
 
+### Validation messages
+
+Class-based rules return a specific message for each failure reason — for example, a NIP with a wrong checksum digit returns a different message than one with an invalid length.
+
+The package ships with **English** (`en`) and **Polish** (`pl`) translations. To publish and customise them:
+
+```bash
+php artisan vendor:publish --tag=numerik-lang
+```
+
 ### String-based rules
 
 Rules are also available as strings via the service provider:
@@ -61,6 +71,8 @@ Rules are also available as strings via the service provider:
 'regon' => ['required', 'regon'],
 'krs'   => ['required', 'krs'],
 ```
+
+String-based rules always return a generic message regardless of the failure reason. Use the class-based rules when specific messages matter.
 
 ## Changelog
 
