@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Polish (`pl`) translations for all validation messages
 - Per-reason validation messages for `NipRule`, `KrsRule`, and `PeselRule`. Each failure reason (invalid checksum, invalid length, invalid format, etc.) now returns a specific message instead of a generic one. `RegonRule` is unchanged — granular messages for REGON are deferred.
 
 ### Changed
