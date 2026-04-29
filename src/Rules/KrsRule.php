@@ -6,6 +6,7 @@ namespace SlashLab\NumerikLaravel\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Lang;
 use SlashLab\Numerik\Identifiers\KrsIdentifier;
 
 final class KrsRule implements ValidationRule
@@ -26,7 +27,7 @@ final class KrsRule implements ValidationRule
             $reason = $result->getFirstFailure()?->reason->value ?? 'default';
             $key = "numerik::validation.krs.{$reason}";
 
-            $fail(app('translator')->has($key) ? $key : 'numerik::validation.krs.default')
+            $fail(Lang::has($key) ? $key : 'numerik::validation.krs.default')
                 ->translate(['attribute' => $attribute]);
         }
     }

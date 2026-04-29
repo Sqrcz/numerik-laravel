@@ -6,6 +6,7 @@ namespace SlashLab\NumerikLaravel\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Lang;
 use SlashLab\Numerik\Identifiers\NipIdentifier;
 
 final class NipRule implements ValidationRule
@@ -26,7 +27,7 @@ final class NipRule implements ValidationRule
             $reason = $result->getFirstFailure()?->reason->value ?? 'default';
             $key = "numerik::validation.nip.{$reason}";
 
-            $fail(app('translator')->has($key) ? $key : 'numerik::validation.nip.default')
+            $fail(Lang::has($key) ? $key : 'numerik::validation.nip.default')
                 ->translate(['attribute' => $attribute]);
         }
     }
