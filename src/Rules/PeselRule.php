@@ -7,6 +7,7 @@ namespace SlashLab\NumerikLaravel\Rules;
 use Closure;
 use DateTimeImmutable;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Lang;
 use SlashLab\Numerik\Enums\Gender;
 use SlashLab\Numerik\Identifiers\PeselIdentifier;
 
@@ -31,7 +32,7 @@ final class PeselRule implements ValidationRule
             $reason = $result->getFirstFailure()?->reason->value ?? 'default';
             $key = "numerik::validation.pesel.{$reason}";
 
-            $fail(app('translator')->has($key) ? $key : 'numerik::validation.pesel.default')
+            $fail(Lang::has($key) ? $key : 'numerik::validation.pesel.default')
                 ->translate(['attribute' => $attribute]);
 
             return;
