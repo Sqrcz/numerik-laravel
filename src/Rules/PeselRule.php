@@ -25,6 +25,9 @@ final class PeselRule implements ValidationRule
     {
         $identifier = new PeselIdentifier(strict: $this->strict);
         $string = is_scalar($value) ? (string) $value : '';
+        $humanAttribute = Lang::has("validation.attributes.{$attribute}")
+            ? Lang::get("validation.attributes.{$attribute}")
+            : ucfirst(str_replace('_', ' ', $attribute));
 
         $result = $identifier->validate($string);
 
@@ -33,7 +36,7 @@ final class PeselRule implements ValidationRule
             $key = "numerik::validation.pesel.{$reason}";
 
             $fail(Lang::has($key) ? $key : 'numerik::validation.pesel.default')
-                ->translate(['attribute' => $attribute]);
+                ->translate(['attribute' => $humanAttribute]);
 
             return;
         }
@@ -45,19 +48,19 @@ final class PeselRule implements ValidationRule
         $pesel = $identifier->parse($string);
 
         if ($this->gender !== null && $pesel->getGender() !== $this->gender) {
-            $fail('numerik::validation.pesel_gender')->translate(['attribute' => $attribute]);
+            $fail('numerik::validation.pesel_gender')->translate(['attribute' => $humanAttribute]);
         }
 
         if ($this->bornBefore !== null && $pesel->getBirthDate() >= $this->bornBefore) {
             $fail('numerik::validation.pesel_born_before')->translate([
-                'attribute' => $attribute,
+                'attribute' => $humanAttribute,
                 'date'      => $this->bornBefore->format('Y-m-d'),
             ]);
         }
 
         if ($this->bornAfter !== null && $pesel->getBirthDate() <= $this->bornAfter) {
             $fail('numerik::validation.pesel_born_after')->translate([
-                'attribute' => $attribute,
+                'attribute' => $humanAttribute,
                 'date'      => $this->bornAfter->format('Y-m-d'),
             ]);
         }
