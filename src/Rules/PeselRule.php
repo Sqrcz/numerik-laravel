@@ -8,6 +8,7 @@ use Closure;
 use DateTimeImmutable;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Str;
 use SlashLab\Numerik\Enums\Gender;
 use SlashLab\Numerik\Identifiers\PeselIdentifier;
 
@@ -27,7 +28,7 @@ final class PeselRule implements ValidationRule
         $string = is_scalar($value) ? (string) $value : '';
         $humanAttribute = Lang::has("validation.attributes.{$attribute}")
             ? Lang::get("validation.attributes.{$attribute}")
-            : ucfirst(str_replace('_', ' ', $attribute));
+            : Str::ucfirst(str_replace('_', ' ', $attribute));
 
         $result = $identifier->validate($string);
 

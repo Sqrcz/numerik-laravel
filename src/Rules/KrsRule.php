@@ -7,6 +7,7 @@ namespace SlashLab\NumerikLaravel\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Str;
 use SlashLab\Numerik\Identifiers\KrsIdentifier;
 
 final class KrsRule implements ValidationRule
@@ -28,7 +29,7 @@ final class KrsRule implements ValidationRule
             $key = "numerik::validation.krs.{$reason}";
             $humanAttribute = Lang::has("validation.attributes.{$attribute}")
                 ? Lang::get("validation.attributes.{$attribute}")
-                : ucfirst(str_replace('_', ' ', $attribute));
+                : Str::ucfirst(str_replace('_', ' ', $attribute));
 
             $fail(Lang::has($key) ? $key : 'numerik::validation.krs.default')
                 ->translate(['attribute' => $humanAttribute]);
