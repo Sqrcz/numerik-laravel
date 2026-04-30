@@ -6,6 +6,7 @@ namespace SlashLab\NumerikLaravel\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Lang;
 use SlashLab\Numerik\Identifiers\RegonIdentifier;
 
 final class RegonRule implements ValidationRule
@@ -21,7 +22,11 @@ final class RegonRule implements ValidationRule
         $string = is_scalar($value) ? (string) $value : '';
 
         if (! $identifier->isValid($string)) {
-            $fail('numerik::validation.regon')->translate(['attribute' => $attribute]);
+            $humanAttribute = Lang::has("validation.attributes.{$attribute}")
+                ? Lang::get("validation.attributes.{$attribute}")
+                : ucfirst(str_replace('_', ' ', $attribute));
+
+            $fail('numerik::validation.regon')->translate(['attribute' => $humanAttribute]);
         }
     }
 }

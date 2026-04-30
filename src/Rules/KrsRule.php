@@ -26,9 +26,12 @@ final class KrsRule implements ValidationRule
         if ($result->isFailed()) {
             $reason = $result->getFirstFailure()?->reason->value ?? 'default';
             $key = "numerik::validation.krs.{$reason}";
+            $humanAttribute = Lang::has("validation.attributes.{$attribute}")
+                ? Lang::get("validation.attributes.{$attribute}")
+                : ucfirst(str_replace('_', ' ', $attribute));
 
             $fail(Lang::has($key) ? $key : 'numerik::validation.krs.default')
-                ->translate(['attribute' => $attribute]);
+                ->translate(['attribute' => $humanAttribute]);
         }
     }
 }
