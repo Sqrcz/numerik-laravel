@@ -39,41 +39,45 @@ final class ServiceProviderTest extends TestCase
     public function test_translations_are_loaded(): void
     {
         $this->assertSame(
-            'The field is not a valid NIP number.',
-            trans('numerik::validation.nip.default', ['attribute' => 'field']),
+            'The NIP is not a valid NIP number.',
+            trans('numerik::validation.nip.default', ['attribute' => 'NIP']),
         );
     }
 
     public function test_all_translation_keys_exist(): void
     {
-        $attr = ['attribute' => 'field'];
-        $date = ['attribute' => 'field', 'date' => '2000-01-01'];
+        $nip = ['attribute' => 'NIP'];
+        $krs = ['attribute' => 'KRS'];
+        $pesel = ['attribute' => 'PESEL'];
+        $regon = ['attribute' => 'REGON'];
+        $peselBefore = ['attribute' => 'PESEL', 'date' => '2000-01-01'];
+        $peselAfter = ['attribute' => 'PESEL', 'date' => '2000-01-01'];
 
-        $this->assertSame('The field is not a valid NIP number.', trans('numerik::validation.nip.default', $attr));
-        $this->assertSame('NIP must be exactly 10 digits.', trans('numerik::validation.nip.invalid_length', $attr));
-        $this->assertSame('The field may only contain digits and hyphens.', trans('numerik::validation.nip.invalid_characters', $attr));
-        $this->assertSame('The field tax office code cannot start with 000.', trans('numerik::validation.nip.invalid_format', $attr));
-        $this->assertSame('The field checksum digit is incorrect.', trans('numerik::validation.nip.invalid_checksum', $attr));
-        $this->assertSame('The field cannot consist of a single repeated digit.', trans('numerik::validation.nip.all_same_digit', $attr));
+        $this->assertSame('The NIP is not a valid NIP number.', trans('numerik::validation.nip.default', $nip));
+        $this->assertSame('NIP must be exactly 10 digits.', trans('numerik::validation.nip.invalid_length', $nip));
+        $this->assertSame('The NIP may only contain digits and hyphens.', trans('numerik::validation.nip.invalid_characters', $nip));
+        $this->assertSame('The NIP tax office code cannot start with 000.', trans('numerik::validation.nip.invalid_format', $nip));
+        $this->assertSame('The NIP checksum digit is incorrect.', trans('numerik::validation.nip.invalid_checksum', $nip));
+        $this->assertSame('The NIP cannot consist of a single repeated digit.', trans('numerik::validation.nip.all_same_digit', $nip));
 
-        $this->assertSame('The field is not a valid KRS number.', trans('numerik::validation.krs.default', $attr));
-        $this->assertSame('KRS must be between 1 and 10 digits.', trans('numerik::validation.krs.invalid_length', $attr));
-        $this->assertSame('The field may only contain digits.', trans('numerik::validation.krs.invalid_characters', $attr));
-        $this->assertSame('The field cannot be all zeros.', trans('numerik::validation.krs.all_zeros', $attr));
-        $this->assertSame('The field cannot consist of a single repeated digit.', trans('numerik::validation.krs.all_same_digit', $attr));
+        $this->assertSame('The KRS is not a valid KRS number.', trans('numerik::validation.krs.default', $krs));
+        $this->assertSame('KRS must be between 1 and 10 digits.', trans('numerik::validation.krs.invalid_length', $krs));
+        $this->assertSame('The KRS may only contain digits.', trans('numerik::validation.krs.invalid_characters', $krs));
+        $this->assertSame('The KRS cannot be all zeros.', trans('numerik::validation.krs.all_zeros', $krs));
+        $this->assertSame('The KRS cannot consist of a single repeated digit.', trans('numerik::validation.krs.all_same_digit', $krs));
 
-        $this->assertSame('The field is not a valid PESEL number.', trans('numerik::validation.pesel.default', $attr));
-        $this->assertSame('PESEL must be exactly 11 digits.', trans('numerik::validation.pesel.invalid_length', $attr));
-        $this->assertSame('The field may only contain digits.', trans('numerik::validation.pesel.invalid_characters', $attr));
-        $this->assertSame('The field contains an invalid month encoding.', trans('numerik::validation.pesel.invalid_month', $attr));
-        $this->assertSame('The field contains an invalid date.', trans('numerik::validation.pesel.invalid_date', $attr));
-        $this->assertSame('The field checksum digit is incorrect.', trans('numerik::validation.pesel.invalid_checksum', $attr));
-        $this->assertSame('The field must belong to a person born in the past.', trans('numerik::validation.pesel.future_date', $attr));
-        $this->assertSame('The field cannot consist of a single repeated digit.', trans('numerik::validation.pesel.all_same_digit', $attr));
+        $this->assertSame('The PESEL is not a valid PESEL number.', trans('numerik::validation.pesel.default', $pesel));
+        $this->assertSame('PESEL must be exactly 11 digits.', trans('numerik::validation.pesel.invalid_length', $pesel));
+        $this->assertSame('The PESEL may only contain digits.', trans('numerik::validation.pesel.invalid_characters', $pesel));
+        $this->assertSame('The PESEL contains an invalid month encoding.', trans('numerik::validation.pesel.invalid_month', $pesel));
+        $this->assertSame('The PESEL contains an invalid date.', trans('numerik::validation.pesel.invalid_date', $pesel));
+        $this->assertSame('The PESEL checksum digit is incorrect.', trans('numerik::validation.pesel.invalid_checksum', $pesel));
+        $this->assertSame('The PESEL must belong to a person born in the past.', trans('numerik::validation.pesel.future_date', $pesel));
+        $this->assertSame('The PESEL cannot consist of a single repeated digit.', trans('numerik::validation.pesel.all_same_digit', $pesel));
 
-        $this->assertSame('The field is not a valid REGON number.', trans('numerik::validation.regon', $attr));
-        $this->assertSame('The field does not match the expected gender.', trans('numerik::validation.pesel_gender', $attr));
-        $this->assertSame('The field must belong to a person born before 2000-01-01.', trans('numerik::validation.pesel_born_before', $date));
-        $this->assertSame('The field must belong to a person born after 2000-01-01.', trans('numerik::validation.pesel_born_after', $date));
+        $this->assertSame('The REGON is not a valid REGON number.', trans('numerik::validation.regon', $regon));
+        $this->assertSame('The PESEL does not match the expected gender.', trans('numerik::validation.pesel_gender', $pesel));
+        $this->assertSame('The PESEL must belong to a person born before 2000-01-01.', trans('numerik::validation.pesel_born_before', $peselBefore));
+        $this->assertSame('The PESEL must belong to a person born after 2000-01-01.', trans('numerik::validation.pesel_born_after', $peselAfter));
     }
 }

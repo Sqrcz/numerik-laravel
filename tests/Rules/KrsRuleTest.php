@@ -4,12 +4,19 @@ declare(strict_types=1);
 
 namespace SlashLab\NumerikLaravel\Tests\Rules;
 
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 use SlashLab\NumerikLaravel\Rules\KrsRule;
 use SlashLab\NumerikLaravel\Tests\TestCase;
 
 final class KrsRuleTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Lang::addLines(['validation.attributes.krs' => 'KRS'], 'en');
+    }
+
     public function test_valid_krs_passes(): void
     {
         $validator = Validator::make(['krs' => '0000127206'], ['krs' => new KrsRule()]);
@@ -47,30 +54,30 @@ final class KrsRuleTest extends TestCase
 
     public function test_invalid_length_message(): void
     {
-        $validator = Validator::make(['field' => '12345678901'], ['field' => new KrsRule()]);
+        $validator = Validator::make(['krs' => '12345678901'], ['krs' => new KrsRule()]);
 
-        $this->assertSame('KRS must be between 1 and 10 digits.', $validator->errors()->first('field'));
+        $this->assertSame('KRS must be between 1 and 10 digits.', $validator->errors()->first('krs'));
     }
 
     public function test_invalid_characters_message(): void
     {
-        $validator = Validator::make(['field' => 'abc'], ['field' => new KrsRule()]);
+        $validator = Validator::make(['krs' => 'abc'], ['krs' => new KrsRule()]);
 
-        $this->assertSame('The field may only contain digits.', $validator->errors()->first('field'));
+        $this->assertSame('The KRS may only contain digits.', $validator->errors()->first('krs'));
     }
 
     public function test_all_zeros_message(): void
     {
-        $validator = Validator::make(['field' => '0000000000'], ['field' => new KrsRule()]);
+        $validator = Validator::make(['krs' => '0000000000'], ['krs' => new KrsRule()]);
 
-        $this->assertSame('The field cannot be all zeros.', $validator->errors()->first('field'));
+        $this->assertSame('The KRS cannot be all zeros.', $validator->errors()->first('krs'));
     }
 
     public function test_all_same_digit_message(): void
     {
-        $validator = Validator::make(['field' => '1111111111'], ['field' => new KrsRule(strict: true)]);
+        $validator = Validator::make(['krs' => '1111111111'], ['krs' => new KrsRule(strict: true)]);
 
-        $this->assertSame('The field cannot consist of a single repeated digit.', $validator->errors()->first('field'));
+        $this->assertSame('The KRS cannot consist of a single repeated digit.', $validator->errors()->first('krs'));
     }
 
     public function test_string_alias_passes_for_valid_krs(): void
