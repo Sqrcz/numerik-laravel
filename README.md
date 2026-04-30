@@ -55,6 +55,8 @@ new PeselRule(strict: false)
 
 Class-based rules return a specific message for each failure reason — for example, a NIP with a wrong checksum digit returns a different message than one with an invalid length.
 
+Error messages use the field label registered in `validation.attributes` when one is found, matching the behaviour of Laravel's built-in rules. If no label is registered, the field name is humanised (underscores replaced with spaces, first letter capitalised).
+
 The package ships with **English** (`en`) and **Polish** (`pl`) translations. To publish and customise them:
 
 ```bash
