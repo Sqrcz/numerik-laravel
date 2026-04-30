@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Attribute name humanisation now uses `Str::ucfirst()` instead of `ucfirst()`, correctly capitalising multibyte (e.g. accented) first characters.
+
 ### Changed
 
 - Validation error messages now resolve the field label from `validation.attributes.*` when available, matching Laravel's built-in rule behaviour. Falls back to a humanised version of the field name (underscores replaced with spaces, first letter capitalised).
