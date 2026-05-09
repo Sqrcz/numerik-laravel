@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-05-09
+
 ### Added
 
 - `IdCardRule` — Polish ID card (*Dowód osobisty*) validation, with per-reason messages (`invalid_length`, `invalid_characters`, `invalid_format`, `invalid_checksum`)
@@ -21,6 +23,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Bumped `slashlab/numerik` requirement from `^1.0` to `^1.1`
+
+## [1.2.0] - 2026-05-01
+
+### Fixed
+
+- Attribute name humanisation now uses `Str::ucfirst()` instead of `ucfirst()`, correctly capitalising multibyte (e.g. accented) first characters.
+
+### Changed
+
+- Validation error messages now resolve the field label from `validation.attributes.*` when available, matching Laravel's built-in rule behaviour. Falls back to a humanised version of the field name (underscores replaced with spaces, first letter capitalised).
 
 ## [1.1.0] - 2026-04-29
 
@@ -49,7 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/sqrcz/numerik-laravel/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/sqrcz/numerik-laravel/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/sqrcz/numerik-laravel/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/sqrcz/numerik-laravel/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/sqrcz/numerik-laravel/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/sqrcz/numerik-laravel/releases/tag/v1.0.0
