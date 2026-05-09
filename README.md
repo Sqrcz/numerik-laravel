@@ -5,7 +5,7 @@
 [![PHP Version](https://img.shields.io/packagist/php-v/slashlab/numerik-laravel.svg)](https://packagist.org/packages/slashlab/numerik-laravel)
 [![License](https://img.shields.io/github/license/sqrcz/numerik-laravel.svg)](LICENSE)
 
-> Laravel validation rules for Polish identification numbers — PESEL, NIP, REGON, and KRS. Powered by [slashlab/numerik](https://github.com/sqrcz/numerik).
+> Laravel validation rules for Polish identification numbers — PESEL, NIP, REGON, KRS, ID card, passport, VAT-EU, NRB, and IBAN. Powered by [slashlab/numerik](https://github.com/sqrcz/numerik).
 
 ## Requirements
 
@@ -27,18 +27,33 @@ The service provider is auto-discovered — no manual registration needed.
 Use the rules in form requests or `Validator::make()` calls:
 
 ```php
+// Personal
 use SlashLab\NumerikLaravel\Rules\PeselRule;
+use SlashLab\NumerikLaravel\Rules\IdCardRule;
+use SlashLab\NumerikLaravel\Rules\PassportRule;
+
+// Tax & Business
 use SlashLab\NumerikLaravel\Rules\NipRule;
+use SlashLab\NumerikLaravel\Rules\VatEuRule;
 use SlashLab\NumerikLaravel\Rules\RegonRule;
 use SlashLab\NumerikLaravel\Rules\KrsRule;
+
+// Banking
+use SlashLab\NumerikLaravel\Rules\NrbRule;
+use SlashLab\NumerikLaravel\Rules\IbanRule;
 
 public function rules(): array
 {
     return [
-        'pesel' => ['required', new PeselRule()],
-        'nip'   => ['required', new NipRule()],
-        'regon' => ['required', new RegonRule()],
-        'krs'   => ['required', new KrsRule()],
+        'pesel'   => ['required', new PeselRule()],
+        'id_card' => ['required', new IdCardRule()],
+        'passport' => ['required', new PassportRule()],
+        'nip'     => ['required', new NipRule()],
+        'vat_eu'  => ['required', new VatEuRule()],
+        'regon'   => ['required', new RegonRule()],
+        'krs'     => ['required', new KrsRule()],
+        'nrb'     => ['required', new NrbRule()],
+        'iban'    => ['required', new IbanRule()],
     ];
 }
 ```
@@ -68,10 +83,20 @@ php artisan vendor:publish --tag=numerik-lang
 Rules are also available as strings via the service provider:
 
 ```php
-'pesel' => ['required', 'pesel'],
-'nip'   => ['required', 'nip'],
-'regon' => ['required', 'regon'],
-'krs'   => ['required', 'krs'],
+// Personal
+'pesel'    => ['required', 'pesel'],
+'id_card'  => ['required', 'id_card'],
+'passport' => ['required', 'passport'],
+
+// Tax & Business
+'nip'    => ['required', 'nip'],
+'vat_eu' => ['required', 'vat_eu'],
+'regon'  => ['required', 'regon'],
+'krs'    => ['required', 'krs'],
+
+// Banking
+'nrb'  => ['required', 'nrb'],
+'iban' => ['required', 'iban'],
 ```
 
 String-based rules always return a generic message regardless of the failure reason. Use the class-based rules when specific messages matter.

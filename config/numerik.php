@@ -11,10 +11,20 @@ return [
     | with the Laravel Validator.
     */
     'rules' => [
-        'pesel' => true,
-        'nip'   => true,
-        'regon' => true,
-        'krs'   => true,
+        // Personal
+        'pesel'    => true,
+        'id_card'  => true,
+        'passport' => true,
+
+        // Tax & Business
+        'nip'      => true,
+        'vat_eu'   => true,
+        'regon'    => true,
+        'krs'      => true,
+
+        // Banking
+        'nrb'      => true,
+        'iban'     => true,
     ],
 
     /*
