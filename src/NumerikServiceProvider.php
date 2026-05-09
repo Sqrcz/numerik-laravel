@@ -6,15 +6,15 @@ namespace SlashLab\NumerikLaravel;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
-use SlashLab\Numerik\Identifiers\PeselIdentifier;
-use SlashLab\Numerik\Identifiers\IdCardIdentifier;
-use SlashLab\Numerik\Identifiers\PassportIdentifier;
-use SlashLab\Numerik\Identifiers\NipIdentifier;
-use SlashLab\Numerik\Identifiers\VatEuIdentifier;
-use SlashLab\Numerik\Identifiers\RegonIdentifier;
-use SlashLab\Numerik\Identifiers\KrsIdentifier;
-use SlashLab\Numerik\Identifiers\NrbIdentifier;
 use SlashLab\Numerik\Identifiers\IbanIdentifier;
+use SlashLab\Numerik\Identifiers\IdCardIdentifier;
+use SlashLab\Numerik\Identifiers\KrsIdentifier;
+use SlashLab\Numerik\Identifiers\NipIdentifier;
+use SlashLab\Numerik\Identifiers\NrbIdentifier;
+use SlashLab\Numerik\Identifiers\PassportIdentifier;
+use SlashLab\Numerik\Identifiers\PeselIdentifier;
+use SlashLab\Numerik\Identifiers\RegonIdentifier;
+use SlashLab\Numerik\Identifiers\VatEuIdentifier;
 
 final class NumerikServiceProvider extends ServiceProvider
 {
