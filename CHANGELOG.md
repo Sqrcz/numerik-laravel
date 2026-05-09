@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `NrbRule` — Polish bank account number (*NRB*) validation, with per-reason messages (`invalid_length`, `invalid_characters`, `invalid_checksum`)
 - `IbanRule` — Polish IBAN validation, with per-reason messages (`invalid_length`, `invalid_format`, `invalid_characters`, `invalid_checksum`)
 - String-based aliases `id_card`, `passport`, `vat_eu`, `nrb`, `iban` registered via service provider
-- Polish (`pl`) translations for all five new rule groups
+- English (`en`) and Polish (`pl`) translations for all five new rule groups
 - Config keys `rules.id_card`, `rules.passport`, `rules.vat_eu`, `rules.nrb`, `rules.iban` (all default `true`)
 
 ### Changed

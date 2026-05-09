@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace SlashLab\NumerikLaravel\Tests;
 
-use SlashLab\Numerik\Identifiers\PeselIdentifier;
-use SlashLab\Numerik\Identifiers\IdCardIdentifier;
-use SlashLab\Numerik\Identifiers\PassportIdentifier;
-use SlashLab\Numerik\Identifiers\NipIdentifier;
-use SlashLab\Numerik\Identifiers\VatEuIdentifier;
-use SlashLab\Numerik\Identifiers\RegonIdentifier;
-use SlashLab\Numerik\Identifiers\KrsIdentifier;
-use SlashLab\Numerik\Identifiers\NrbIdentifier;
 use SlashLab\Numerik\Identifiers\IbanIdentifier;
+use SlashLab\Numerik\Identifiers\IdCardIdentifier;
+use SlashLab\Numerik\Identifiers\KrsIdentifier;
+use SlashLab\Numerik\Identifiers\NipIdentifier;
+use SlashLab\Numerik\Identifiers\NrbIdentifier;
+use SlashLab\Numerik\Identifiers\PassportIdentifier;
+use SlashLab\Numerik\Identifiers\PeselIdentifier;
+use SlashLab\Numerik\Identifiers\RegonIdentifier;
+use SlashLab\Numerik\Identifiers\VatEuIdentifier;
 use SlashLab\NumerikLaravel\Facades\Numerik;
 
 final class FacadeTest extends TestCase
