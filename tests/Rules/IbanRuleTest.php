@@ -63,7 +63,7 @@ final class IbanRuleTest extends TestCase
     {
         $validator = Validator::make(['iban' => 'PL6110201026000000000000000'], ['iban' => new IbanRule()]);
 
-        $this->assertSame('IBAN must contain exactly 26 digits after the PL prefix.', $validator->errors()->first('iban'));
+        $this->assertSame('The IBAN must contain exactly 26 digits after the PL prefix.', $validator->errors()->first('iban'));
     }
 
     public function test_invalid_characters_message(): void

@@ -59,20 +59,20 @@ final class ServiceProviderTest extends TestCase
         $peselAfter = ['attribute' => 'PESEL', 'date' => '2000-01-01'];
 
         $this->assertSame('The NIP is not a valid NIP number.', trans('numerik::validation.nip.default', $nip));
-        $this->assertSame('NIP must be exactly 10 digits.', trans('numerik::validation.nip.invalid_length', $nip));
+        $this->assertSame('The NIP must be exactly 10 digits.', trans('numerik::validation.nip.invalid_length', $nip));
         $this->assertSame('The NIP may only contain digits and hyphens.', trans('numerik::validation.nip.invalid_characters', $nip));
         $this->assertSame('The NIP tax office code cannot start with 000.', trans('numerik::validation.nip.invalid_format', $nip));
         $this->assertSame('The NIP checksum digit is incorrect.', trans('numerik::validation.nip.invalid_checksum', $nip));
         $this->assertSame('The NIP cannot consist of a single repeated digit.', trans('numerik::validation.nip.all_same_digit', $nip));
 
         $this->assertSame('The KRS is not a valid KRS number.', trans('numerik::validation.krs.default', $krs));
-        $this->assertSame('KRS must be between 1 and 10 digits.', trans('numerik::validation.krs.invalid_length', $krs));
+        $this->assertSame('The KRS must be between 1 and 10 digits.', trans('numerik::validation.krs.invalid_length', $krs));
         $this->assertSame('The KRS may only contain digits.', trans('numerik::validation.krs.invalid_characters', $krs));
         $this->assertSame('The KRS cannot be all zeros.', trans('numerik::validation.krs.all_zeros', $krs));
         $this->assertSame('The KRS cannot consist of a single repeated digit.', trans('numerik::validation.krs.all_same_digit', $krs));
 
         $this->assertSame('The PESEL is not a valid PESEL number.', trans('numerik::validation.pesel.default', $pesel));
-        $this->assertSame('PESEL must be exactly 11 digits.', trans('numerik::validation.pesel.invalid_length', $pesel));
+        $this->assertSame('The PESEL must be exactly 11 digits.', trans('numerik::validation.pesel.invalid_length', $pesel));
         $this->assertSame('The PESEL may only contain digits.', trans('numerik::validation.pesel.invalid_characters', $pesel));
         $this->assertSame('The PESEL contains an invalid month encoding.', trans('numerik::validation.pesel.invalid_month', $pesel));
         $this->assertSame('The PESEL contains an invalid date.', trans('numerik::validation.pesel.invalid_date', $pesel));
@@ -92,30 +92,30 @@ final class ServiceProviderTest extends TestCase
         $iban     = ['attribute' => 'IBAN'];
 
         $this->assertSame('The ID Card is not a valid Polish ID card number.', trans('numerik::validation.id_card.default', $idCard));
-        $this->assertSame('Identity card number must be exactly 9 characters.', trans('numerik::validation.id_card.invalid_length', $idCard));
+        $this->assertSame('The ID Card must be exactly 9 characters.', trans('numerik::validation.id_card.invalid_length', $idCard));
         $this->assertSame('The ID Card contains invalid characters.', trans('numerik::validation.id_card.invalid_characters', $idCard));
         $this->assertSame('The ID Card series cannot contain the letters O or Q.', trans('numerik::validation.id_card.invalid_format', $idCard));
         $this->assertSame('The ID Card checksum digit is incorrect.', trans('numerik::validation.id_card.invalid_checksum', $idCard));
 
         $this->assertSame('The Passport is not a valid Polish passport number.', trans('numerik::validation.passport.default', $passport));
-        $this->assertSame('Passport number must be exactly 9 characters.', trans('numerik::validation.passport.invalid_length', $passport));
+        $this->assertSame('The Passport must be exactly 9 characters.', trans('numerik::validation.passport.invalid_length', $passport));
         $this->assertSame('The Passport contains invalid characters.', trans('numerik::validation.passport.invalid_characters', $passport));
         $this->assertSame('The Passport checksum digit is incorrect.', trans('numerik::validation.passport.invalid_checksum', $passport));
 
         $this->assertSame('The VAT-EU is not a valid VAT-EU number.', trans('numerik::validation.vat_eu.default', $vatEu));
-        $this->assertSame('VAT-EU number must contain exactly 10 digits after the PL prefix.', trans('numerik::validation.vat_eu.invalid_length', $vatEu));
+        $this->assertSame('The VAT-EU must contain exactly 10 digits after the PL prefix.', trans('numerik::validation.vat_eu.invalid_length', $vatEu));
         $this->assertSame('The VAT-EU must start with the PL country prefix.', trans('numerik::validation.vat_eu.invalid_format', $vatEu));
         $this->assertSame('The VAT-EU may only contain digits after the PL prefix.', trans('numerik::validation.vat_eu.invalid_characters', $vatEu));
         $this->assertSame('The VAT-EU checksum digit is incorrect.', trans('numerik::validation.vat_eu.invalid_checksum', $vatEu));
         $this->assertSame('The VAT-EU cannot consist of a single repeated digit.', trans('numerik::validation.vat_eu.all_same_digit', $vatEu));
 
         $this->assertSame('The NRB is not a valid NRB account number.', trans('numerik::validation.nrb.default', $nrb));
-        $this->assertSame('NRB must be exactly 26 digits.', trans('numerik::validation.nrb.invalid_length', $nrb));
+        $this->assertSame('The NRB must be exactly 26 digits.', trans('numerik::validation.nrb.invalid_length', $nrb));
         $this->assertSame('The NRB may only contain digits.', trans('numerik::validation.nrb.invalid_characters', $nrb));
         $this->assertSame('The NRB checksum (MOD-97) is incorrect.', trans('numerik::validation.nrb.invalid_checksum', $nrb));
 
         $this->assertSame('The IBAN is not a valid Polish IBAN.', trans('numerik::validation.iban.default', $iban));
-        $this->assertSame('IBAN must contain exactly 26 digits after the PL prefix.', trans('numerik::validation.iban.invalid_length', $iban));
+        $this->assertSame('The IBAN must contain exactly 26 digits after the PL prefix.', trans('numerik::validation.iban.invalid_length', $iban));
         $this->assertSame('The IBAN must start with the PL country prefix.', trans('numerik::validation.iban.invalid_format', $iban));
         $this->assertSame('The IBAN may only contain digits after the PL prefix.', trans('numerik::validation.iban.invalid_characters', $iban));
         $this->assertSame('The IBAN checksum is incorrect.', trans('numerik::validation.iban.invalid_checksum', $iban));

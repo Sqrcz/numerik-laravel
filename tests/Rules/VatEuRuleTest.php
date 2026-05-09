@@ -70,7 +70,7 @@ final class VatEuRuleTest extends TestCase
     {
         $validator = Validator::make(['vat_eu' => 'PL526025027'], ['vat_eu' => new VatEuRule()]);
 
-        $this->assertSame('VAT-EU number must contain exactly 10 digits after the PL prefix.', $validator->errors()->first('vat_eu'));
+        $this->assertSame('The VAT-EU must contain exactly 10 digits after the PL prefix.', $validator->errors()->first('vat_eu'));
     }
 
     public function test_invalid_checksum_message(): void

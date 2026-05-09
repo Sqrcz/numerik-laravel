@@ -56,7 +56,7 @@ final class NipRuleTest extends TestCase
     {
         $validator = Validator::make(['nip' => '123'], ['nip' => new NipRule()]);
 
-        $this->assertSame('NIP must be exactly 10 digits.', $validator->errors()->first('nip'));
+        $this->assertSame('The NIP must be exactly 10 digits.', $validator->errors()->first('nip'));
     }
 
     public function test_invalid_characters_message(): void
