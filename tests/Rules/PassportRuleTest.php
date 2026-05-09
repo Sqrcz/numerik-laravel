@@ -49,7 +49,7 @@ final class PassportRuleTest extends TestCase
     {
         $validator = Validator::make(['passport' => 'AB123456'], ['passport' => new PassportRule()]);
 
-        $this->assertSame('Passport number must be exactly 9 characters.', $validator->errors()->first('passport'));
+        $this->assertSame('The Passport must be exactly 9 characters.', $validator->errors()->first('passport'));
     }
 
     public function test_invalid_characters_message(): void

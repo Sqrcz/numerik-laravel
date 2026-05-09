@@ -56,7 +56,7 @@ final class NrbRuleTest extends TestCase
     {
         $validator = Validator::make(['nrb' => '6110201026000000000000000'], ['nrb' => new NrbRule()]);
 
-        $this->assertSame('NRB must be exactly 26 digits.', $validator->errors()->first('nrb'));
+        $this->assertSame('The NRB must be exactly 26 digits.', $validator->errors()->first('nrb'));
     }
 
     public function test_invalid_characters_message(): void

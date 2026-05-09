@@ -49,7 +49,7 @@ final class IdCardRuleTest extends TestCase
     {
         $validator = Validator::make(['id_card' => 'ABC12345'], ['id_card' => new IdCardRule()]);
 
-        $this->assertSame('Identity card number must be exactly 9 characters.', $validator->errors()->first('id_card'));
+        $this->assertSame('The ID Card must be exactly 9 characters.', $validator->errors()->first('id_card'));
     }
 
     public function test_invalid_characters_message(): void

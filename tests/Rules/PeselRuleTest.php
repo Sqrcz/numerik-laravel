@@ -75,7 +75,7 @@ final class PeselRuleTest extends TestCase
     {
         $validator = Validator::make(['pesel' => '123'], ['pesel' => new PeselRule()]);
 
-        $this->assertSame('PESEL must be exactly 11 digits.', $validator->errors()->first('pesel'));
+        $this->assertSame('The PESEL must be exactly 11 digits.', $validator->errors()->first('pesel'));
     }
 
     public function test_invalid_characters_message(): void

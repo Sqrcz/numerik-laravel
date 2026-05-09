@@ -56,7 +56,7 @@ final class KrsRuleTest extends TestCase
     {
         $validator = Validator::make(['krs' => '12345678901'], ['krs' => new KrsRule()]);
 
-        $this->assertSame('KRS must be between 1 and 10 digits.', $validator->errors()->first('krs'));
+        $this->assertSame('The KRS must be between 1 and 10 digits.', $validator->errors()->first('krs'));
     }
 
     public function test_invalid_characters_message(): void
