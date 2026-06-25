@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-06-25
+
+### Removed
+
+- Laravel 11 support dropped — the entire `laravel/framework:11.*` range reached end of life in August 2025 and has unresolved security advisories. Minimum supported version is now Laravel 12.
+
 ## [1.3.0] - 2026-05-09
 
 ### Added
