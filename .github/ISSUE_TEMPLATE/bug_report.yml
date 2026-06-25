@@ -26,6 +26,14 @@ body:
     validations:
       required: true
 
+  - type: input
+    id: identifier
+    attributes:
+      label: Affected identifier
+      placeholder: "PESEL, NIP, REGON, …"
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:
