@@ -4,15 +4,20 @@
   "type": "library",
   "license": "MIT",
   "keywords": [
-    "pesel",
-    "nip",
-    "regon",
+    "iban",
+    "id-card",
     "krs",
+    "laravel",
+    "nip",
+    "nrb",
+    "numerik",
+    "passport",
+    "pesel",
     "poland",
     "polish",
-    "laravel",
+    "regon",
     "validation",
-    "numerik"
+    "vat-eu"
   ],
   "authors": [
     {
