@@ -87,8 +87,8 @@ php artisan vendor:publish --tag=numerik-lang
 ```php
 new PeselRule(
     gender: Gender::Female,
-    bornBefore: new DateTime('2000-01-01'),
-    bornAfter: new DateTime('1980-01-01'),
+    bornBefore: new DateTimeImmutable('2000-01-01'),
+    bornAfter: new DateTimeImmutable('1980-01-01'),
 )
 ```
 
