@@ -1,9 +1,11 @@
 # numerik-laravel
 
 [![Tests](https://github.com/sqrcz/numerik-laravel/actions/workflows/tests.yml/badge.svg)](https://github.com/sqrcz/numerik-laravel/actions/workflows/tests.yml)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%2010-brightgreen.svg)](https://phpstan.org)
 [![Latest Version](https://img.shields.io/packagist/v/slashlab/numerik-laravel.svg)](https://packagist.org/packages/slashlab/numerik-laravel)
 [![PHP Version](https://img.shields.io/packagist/php-v/slashlab/numerik-laravel.svg)](https://packagist.org/packages/slashlab/numerik-laravel)
 [![License](https://img.shields.io/github/license/sqrcz/numerik-laravel.svg)](LICENSE)
+[![CodeRabbit](https://img.shields.io/coderabbit/prs/github/sqrcz/numerik-laravel)](https://coderabbit.ai)
 
 > Laravel validation rules for Polish identification numbers — PESEL, NIP, REGON, KRS, ID card, passport, VAT-EU, NRB, and IBAN. Powered by [slashlab/numerik](https://github.com/sqrcz/numerik).
 
@@ -77,6 +79,20 @@ The package ships with **English** (`en`) and **Polish** (`pl`) translations. To
 ```bash
 php artisan vendor:publish --tag=numerik-lang
 ```
+
+### PeselRule constraints
+
+`PeselRule` accepts additional parameters for stricter identity checks:
+
+```php
+new PeselRule(
+    gender: Gender::Female,
+    bornBefore: new DateTime('2000-01-01'),
+    bornAfter: new DateTime('1980-01-01'),
+)
+```
+
+All parameters are optional and can be combined freely.
 
 ### String-based rules
 
