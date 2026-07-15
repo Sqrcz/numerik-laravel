@@ -3,6 +3,7 @@
   "description": "Laravel validation rules for Polish identification numbers (PESEL, NIP, REGON, KRS, ID card, passport, VAT-EU, NRB, IBAN) — powered by slashlab/numerik.",
   "type": "library",
   "license": "MIT",
+  "homepage": "https://numerik.slashlab.pl/integrations/laravel/",
   "keywords": [
     "iban",
     "id-card",
