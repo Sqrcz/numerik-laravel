@@ -25,76 +25,35 @@ final class NumerikServiceProvider extends ServiceProvider
         $this->app->bind(\SlashLab\Numerik\Numerik::class, \SlashLab\Numerik\Numerik::class);
     }
 
+    private const array RULES = [
+        // Personal
+        'pesel'     => PeselIdentifier::class,
+        'id_card'   => IdCardIdentifier::class,
+        'passport'  => PassportIdentifier::class,
+
+        // Tax & Business
+        'nip'       => NipIdentifier::class,
+        'vat_eu'    => VatEuIdentifier::class,
+        'regon'     => RegonIdentifier::class,
+        'krs'       => KrsIdentifier::class,
+
+        // Banking
+        'nrb'       => NrbIdentifier::class,
+        'iban'      => IbanIdentifier::class,
+    ];
+
     public function boot(): void
     {
         $strict = (bool) config('numerik.strict', true);
 
-        // Personal
+        foreach (self::RULES as $rule => $identifierClass) {
+            if (! (bool) config("numerik.rules.{$rule}", true)) {
+                continue;
+            }
 
-        if ((bool) config('numerik.rules.pesel', true)) {
-            Validator::extend('pesel', static function (string $attr, mixed $value) use ($strict): bool {
+            Validator::extend($rule, static function (string $attr, mixed $value) use ($strict, $identifierClass): bool {
                 $string = is_scalar($value) ? (string) $value : '';
-                return (new PeselIdentifier(strict: $strict))->isValid($string);
-            });
-        }
-
-        if ((bool) config('numerik.rules.id_card', true)) {
-            Validator::extend('id_card', static function (string $attr, mixed $value) use ($strict): bool {
-                $string = is_scalar($value) ? (string) $value : '';
-                return (new IdCardIdentifier(strict: $strict))->isValid($string);
-            });
-        }
-
-        if ((bool) config('numerik.rules.passport', true)) {
-            Validator::extend('passport', static function (string $attr, mixed $value) use ($strict): bool {
-                $string = is_scalar($value) ? (string) $value : '';
-                return (new PassportIdentifier(strict: $strict))->isValid($string);
-            });
-        }
-
-        // Tax & Business
-
-        if ((bool) config('numerik.rules.nip', true)) {
-            Validator::extend('nip', static function (string $attr, mixed $value) use ($strict): bool {
-                $string = is_scalar($value) ? (string) $value : '';
-                return (new NipIdentifier(strict: $strict))->isValid($string);
-            });
-        }
-
-        if ((bool) config('numerik.rules.vat_eu', true)) {
-            Validator::extend('vat_eu', static function (string $attr, mixed $value) use ($strict): bool {
-                $string = is_scalar($value) ? (string) $value : '';
-                return (new VatEuIdentifier(strict: $strict))->isValid($string);
-            });
-        }
-
-        if ((bool) config('numerik.rules.regon', true)) {
-            Validator::extend('regon', static function (string $attr, mixed $value) use ($strict): bool {
-                $string = is_scalar($value) ? (string) $value : '';
-                return (new RegonIdentifier(strict: $strict))->isValid($string);
-            });
-        }
-
-        if ((bool) config('numerik.rules.krs', true)) {
-            Validator::extend('krs', static function (string $attr, mixed $value) use ($strict): bool {
-                $string = is_scalar($value) ? (string) $value : '';
-                return (new KrsIdentifier(strict: $strict))->isValid($string);
-            });
-        }
-
-        // Banking
-
-        if ((bool) config('numerik.rules.nrb', true)) {
-            Validator::extend('nrb', static function (string $attr, mixed $value) use ($strict): bool {
-                $string = is_scalar($value) ? (string) $value : '';
-                return (new NrbIdentifier(strict: $strict))->isValid($string);
-            });
-        }
-
-        if ((bool) config('numerik.rules.iban', true)) {
-            Validator::extend('iban', static function (string $attr, mixed $value) use ($strict): bool {
-                $string = is_scalar($value) ? (string) $value : '';
-                return (new IbanIdentifier(strict: $strict))->isValid($string);
+                return (new $identifierClass(strict: $strict))->isValid($string);
             });
         }
 
