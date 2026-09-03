@@ -55,7 +55,12 @@ return [
         'all_same_digit'     => 'Pole :attribute nie może składać się z jednej powtarzającej się cyfry.',
     ],
 
-    'regon' => 'Pole :attribute nie jest prawidłowym numerem REGON.',
+    'regon' => [
+        'default'            => 'Pole :attribute nie jest prawidłowym numerem REGON.',
+        'invalid_length'     => 'Pole :attribute musi zawierać 9 lub 14 cyfr.',
+        'invalid_characters' => 'Pole :attribute może zawierać wyłącznie cyfry.',
+        'invalid_checksum'   => 'Cyfra kontrolna w polu :attribute jest nieprawidłowa.',
+    ],
 
     'krs' => [
         'default'            => 'Pole :attribute nie jest prawidłowym numerem KRS.',

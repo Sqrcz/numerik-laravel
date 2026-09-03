@@ -22,12 +22,17 @@ final class RegonRule implements ValidationRule
         $identifier = new RegonIdentifier(strict: $this->strict);
         $string = is_scalar($value) ? (string) $value : '';
 
-        if (! $identifier->isValid($string)) {
+        $result = $identifier->validate($string);
+
+        if ($result->isFailed()) {
+            $reason = $result->getFirstFailure()?->reason->value ?? 'default';
+            $key = "numerik::validation.regon.{$reason}";
             $humanAttribute = Lang::has("validation.attributes.{$attribute}")
                 ? Lang::get("validation.attributes.{$attribute}")
                 : Str::ucfirst(str_replace('_', ' ', $attribute));
 
-            $fail('numerik::validation.regon')->translate(['attribute' => $humanAttribute]);
+            $fail(Lang::has($key) ? $key : 'numerik::validation.regon.default')
+                ->translate(['attribute' => $humanAttribute]);
         }
     }
 }

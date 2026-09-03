@@ -80,7 +80,10 @@ final class ServiceProviderTest extends TestCase
         $this->assertSame('The PESEL must belong to a person born in the past.', trans('numerik::validation.pesel.future_date', $pesel));
         $this->assertSame('The PESEL cannot consist of a single repeated digit.', trans('numerik::validation.pesel.all_same_digit', $pesel));
 
-        $this->assertSame('The REGON is not a valid REGON number.', trans('numerik::validation.regon', $regon));
+        $this->assertSame('The REGON is not a valid REGON number.', trans('numerik::validation.regon.default', $regon));
+        $this->assertSame('The REGON must be 9 or 14 digits.', trans('numerik::validation.regon.invalid_length', $regon));
+        $this->assertSame('The REGON may only contain digits.', trans('numerik::validation.regon.invalid_characters', $regon));
+        $this->assertSame('The REGON checksum digit is incorrect.', trans('numerik::validation.regon.invalid_checksum', $regon));
         $this->assertSame('The PESEL does not match the expected gender.', trans('numerik::validation.pesel_gender', $pesel));
         $this->assertSame('The PESEL must belong to a person born before 2000-01-01.', trans('numerik::validation.pesel_born_before', $peselBefore));
         $this->assertSame('The PESEL must belong to a person born after 2000-01-01.', trans('numerik::validation.pesel_born_after', $peselAfter));
