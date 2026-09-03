@@ -55,7 +55,12 @@ return [
         'all_same_digit'     => 'The :attribute cannot consist of a single repeated digit.',
     ],
 
-    'regon' => 'The :attribute is not a valid REGON number.',
+    'regon' => [
+        'default'            => 'The :attribute is not a valid REGON number.',
+        'invalid_length'     => 'The :attribute must be 9 or 14 digits.',
+        'invalid_characters' => 'The :attribute may only contain digits.',
+        'invalid_checksum'   => 'The :attribute checksum digit is incorrect.',
+    ],
 
     'krs' => [
         'default'            => 'The :attribute is not a valid KRS number.',

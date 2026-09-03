@@ -59,11 +59,14 @@ final class PolishTranslationTest extends TestCase
         $this->assertSame('Pole PESEL musi należeć do osoby urodzonej po 2000-01-01.', trans('numerik::validation.pesel_born_after', $date));
     }
 
-    public function test_regon_translation_key_exists(): void
+    public function test_regon_translation_keys_exist(): void
     {
         $attr = ['attribute' => 'REGON'];
 
-        $this->assertSame('Pole REGON nie jest prawidłowym numerem REGON.', trans('numerik::validation.regon', $attr));
+        $this->assertSame('Pole REGON nie jest prawidłowym numerem REGON.', trans('numerik::validation.regon.default', $attr));
+        $this->assertSame('Pole REGON musi zawierać 9 lub 14 cyfr.', trans('numerik::validation.regon.invalid_length', $attr));
+        $this->assertSame('Pole REGON może zawierać wyłącznie cyfry.', trans('numerik::validation.regon.invalid_characters', $attr));
+        $this->assertSame('Cyfra kontrolna w polu REGON jest nieprawidłowa.', trans('numerik::validation.regon.invalid_checksum', $attr));
     }
 
     public function test_id_card_translation_keys_exist(): void
