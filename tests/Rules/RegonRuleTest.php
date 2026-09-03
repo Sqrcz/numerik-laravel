@@ -52,11 +52,25 @@ final class RegonRuleTest extends TestCase
         $this->assertTrue($validator->passes());
     }
 
-    public function test_fail_message_uses_translation(): void
+    public function test_invalid_length_message(): void
+    {
+        $validator = Validator::make(['regon' => '12345'], ['regon' => new RegonRule()]);
+
+        $this->assertSame('The REGON must be 9 or 14 digits.', $validator->errors()->first('regon'));
+    }
+
+    public function test_invalid_characters_message(): void
+    {
+        $validator = Validator::make(['regon' => 'abcdefghi'], ['regon' => new RegonRule()]);
+
+        $this->assertSame('The REGON may only contain digits.', $validator->errors()->first('regon'));
+    }
+
+    public function test_invalid_checksum_message(): void
     {
         $validator = Validator::make(['regon' => '850518456'], ['regon' => new RegonRule()]);
 
-        $this->assertSame('The REGON is not a valid REGON number.', $validator->errors()->first('regon'));
+        $this->assertSame('The REGON checksum digit is incorrect.', $validator->errors()->first('regon'));
     }
 
     public function test_string_alias_passes_for_valid_regon(): void
