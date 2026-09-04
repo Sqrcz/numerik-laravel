@@ -9,6 +9,7 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }}
 
     strategy:
