@@ -1,5 +1,3 @@
-[🇬🇧 English](README.md) | [🇵🇱 Polski](README.pl.md)
-
 # numerik-laravel
 
 [![Tests](https://github.com/sqrcz/numerik-laravel/actions/workflows/tests.yml/badge.svg)](https://github.com/sqrcz/numerik-laravel/actions/workflows/tests.yml)
@@ -7,7 +5,8 @@
 [![Latest Version](https://img.shields.io/packagist/v/slashlab/numerik-laravel.svg)](https://packagist.org/packages/slashlab/numerik-laravel)
 [![PHP Version](https://img.shields.io/packagist/php-v/slashlab/numerik-laravel.svg)](https://packagist.org/packages/slashlab/numerik-laravel)
 [![License](https://img.shields.io/github/license/sqrcz/numerik-laravel.svg)](LICENSE)
-[![CodeRabbit](https://img.shields.io/coderabbit/prs/github/sqrcz/numerik-laravel)](https://coderabbit.ai)
+
+**English** | [Polski](README.pl.md)
 
 > Laravel validation rules for Polish identification numbers — PESEL, NIP, REGON, KRS, ID card, passport, VAT-EU, NRB, and IBAN. Powered by [slashlab/numerik](https://github.com/sqrcz/numerik).
 
