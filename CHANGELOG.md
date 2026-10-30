@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-10-30
+
 ### Added
 
 - Per-reason validation messages for `RegonRule` (`invalid_length`, `invalid_characters`, `invalid_checksum`), bringing it in line with every other multi-reason rule.
@@ -15,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The `regon` translation key is now a nested array with a `default` entry plus one entry per failure reason, matching the `nip`/`krs`/`pesel` structure introduced in 1.1.0.
 
-> **Upgrading:** only affects you if you ran `vendor:publish --tag=numerik-lang`. If you did, convert the `regon` key in your published file from a flat string to a nested array matching the structure in [`resources/lang/en/validation.php`](resources/lang/en/validation.php).
+> **Upgrading:** only affects you if you ran `vendor:publish --tag=numerik-lang`. If you did, convert the `regon` key in your published file from a flat string to a nested array matching the structure in [`resources/lang/en/validation.php`](resources/lang/en/validation.php). Until you do, both `RegonRule` and the `'regon'` string rule show the raw key `numerik::validation.regon.default` as their error message.
 
 ### Fixed
 
@@ -81,7 +83,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[Unreleased]: https://github.com/sqrcz/numerik-laravel/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/sqrcz/numerik-laravel/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/sqrcz/numerik-laravel/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/sqrcz/numerik-laravel/compare/v1.3.0...v2.0.0
 [1.3.0]: https://github.com/sqrcz/numerik-laravel/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/sqrcz/numerik-laravel/compare/v1.1.0...v1.2.0
