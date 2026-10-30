@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SlashLab\NumerikLaravel;
 
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use SlashLab\Numerik\Identifiers\IbanIdentifier;
@@ -54,6 +55,20 @@ final class NumerikServiceProvider extends ServiceProvider
             Validator::extend($rule, static function (string $attr, mixed $value) use ($strict, $identifierClass): bool {
                 $string = is_scalar($value) ? (string) $value : '';
                 return (new $identifierClass(strict: $strict))->isValid($string);
+            });
+
+            // Resolved per validation rather than passed to extend(), so the message follows the current locale.
+            // Laravel only leaves the bare key when the application defines no message of its own.
+            Validator::replacer($rule, static function (string $message, string $attribute, string $rule, array $parameters, \Illuminate\Validation\Validator $validator): string {
+                if ($message !== "validation.{$rule}") {
+                    return $message;
+                }
+
+                $default = Lang::get("numerik::validation.{$rule}.default", [
+                    'attribute' => $validator->getDisplayableAttribute($attribute),
+                ]);
+
+                return is_string($default) ? $default : $message;
             });
         }
 

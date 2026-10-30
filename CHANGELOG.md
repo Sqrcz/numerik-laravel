@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 > **Upgrading:** only affects you if you ran `vendor:publish --tag=numerik-lang`. If you did, convert the `regon` key in your published file from a flat string to a nested array matching the structure in [`resources/lang/en/validation.php`](resources/lang/en/validation.php).
 
+### Fixed
+
+- String-based rules (e.g. `'regon'`) returned the raw key `validation.regon` as their error message unless the application defined one. They now fall back to the package's translated default message; inline messages and application translations still take precedence.
+
 ## [2.0.0] - 2026-06-25
 
 ### Removed
