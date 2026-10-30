@@ -64,11 +64,10 @@ final class NumerikServiceProvider extends ServiceProvider
                     return $message;
                 }
 
-                $default = Lang::get("numerik::validation.{$rule}.default", [
-                    'attribute' => $validator->getDisplayableAttribute($attribute),
-                ]);
+                $default = Lang::get("numerik::validation.{$rule}.default");
 
-                return is_string($default) ? $default : $message;
+                // makeReplacements() calls this replacer again, which returns at the guard above.
+                return is_string($default) ? $validator->makeReplacements($default, $attribute, $rule, $parameters) : $message;
             });
         }
 

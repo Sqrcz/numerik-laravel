@@ -67,4 +67,13 @@ final class StringRuleMessagesTest extends TestCase
 
         $this->assertSame('App field name', $validator->errors()->first('field_name'));
     }
+
+    public function test_default_message_expands_generic_placeholders(): void
+    {
+        Lang::addLines(['validation.regon.default' => ':attribute :input :index :position'], 'en', 'numerik');
+
+        $validator = Validator::make(['items' => ['invalid']], ['items.*' => 'regon']);
+
+        $this->assertSame('items.0 invalid 0 1', $validator->errors()->first('items.0'));
+    }
 }
